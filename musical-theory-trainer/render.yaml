@@ -3,6 +3,7 @@
 services:
   - type: web
     name: musical-theory-trainer
+    rootDir: musical-theory-trainer
     runtime: node
     plan: free
     buildCommand: npm ci --omit=dev
