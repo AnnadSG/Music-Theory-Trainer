@@ -1,0 +1,76 @@
+/* VOICE: a friendly practice room, precise like a theory workbook
+   IDEA: the staff card on a music stand; answers are big tappable keys
+   PICTURE: the live treble staff, drawn large, notes revealed after you answer
+   COLOUR and TYPE: deep teal ground, white stand, coral accent for mistakes, mint for right; Outfit + Noto Music for glyphs
+   LAYOUT: teal header band with tabs, exercise card left, progress and account right; stacks below 900px */
+:root{color-scheme:light dark;
+  --teal:#0e6e6b;--teal2:#0a5552;
+  --bg:light-dark(#eef5f4,#0d1716);--card:light-dark(#ffffff,#15211f);--ink:light-dark(#102321,#e6f1ef);
+  --mut:light-dark(#4d6461,#9db5b1);--line:light-dark(#d4e3e1,#263634);--staff:light-dark(#1b2b29,#d9e8e5);
+  --ok:#14a37f;--bad:#e5533d;--okbg:light-dark(#dff5ee,#123a31);--badbg:light-dark(#fde6e2,#3d1d18)}
+[hidden]{display:none!important}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Outfit,system-ui,sans-serif;overflow-x:clip}
+.wrap{max-width:1180px;margin:0 auto;padding:0 max(4vw,16px)}
+.band.top{background:var(--teal);color:#fff;padding:clamp(22px,3.5vw,44px) 0 0}
+.brand{margin:0 0 6px;font-weight:600;font-size:14px;opacity:.85}
+h1{font-weight:700;font-size:clamp(32px,5vw,50px);line-height:1.05;margin:0 0 8px;text-wrap:balance}
+.sub{margin:0 0 20px;max-width:62ch;opacity:.92}
+.tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.tabs button{flex:none;font:600 16px Outfit,sans-serif;min-height:46px;padding:0 18px;border:0;border-radius:12px 12px 0 0;background:var(--teal2);color:#fff;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--bg);color:var(--ink)}
+.modes{display:flex;gap:6px;padding:14px 0;position:relative}
+.modes button{font:600 15px Outfit,sans-serif;min-height:40px;padding:0 16px;border-radius:999px;border:2px solid #fff6;background:transparent;color:#fff;cursor:pointer}
+.modes button[aria-checked=true]{background:#fff;color:var(--teal2);border-color:#fff}
+.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;padding-top:26px;padding-bottom:40px}
+@media(min-width:900px){.grid{grid-template-columns:minmax(0,1fr) 340px}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:clamp(16px,2.4vw,24px);box-shadow:0 1px 0 var(--line),0 12px 30px -18px #0a3a3866}
+.card h2{font-size:19px;margin:0 0 12px}
+.side{display:grid;gap:18px;align-content:start}
+.exhead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.prompt{font-size:clamp(20px,2.6vw,26px);font-weight:700;margin:0;line-height:1.2}
+.staff{margin:14px 0 18px;border-radius:14px;background:light-dark(#f7fbfa,#101b1a);border:1px solid var(--line);padding:6px 4px;display:flex;justify-content:center}
+.staff svg{width:100%;max-width:760px;height:auto;max-height:240px}
+.staff .ln{stroke:var(--staff);stroke-width:1.3}
+.staff .clef{font:76px 'Noto Music',serif;fill:var(--staff)}
+.staff .acc{font:26px 'Noto Music',serif;fill:var(--staff)}
+.staff .nh{fill:var(--staff)}.staff .hole{fill:light-dark(#f7fbfa,#101b1a)}
+.staff .qm{font:700 30px Outfit,sans-serif;fill:var(--mut);text-anchor:middle;opacity:.6}
+@media(prefers-reduced-motion:no-preference){.staff .note{animation:drop .3s ease-out both}@keyframes drop{from{opacity:0;transform:translateY(-6px)}}}
+.options{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.opt{font:600 16px Outfit,sans-serif;min-height:56px;padding:8px 12px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;text-align:left;display:flex;gap:10px;align-items:center}
+.opt kbd{flex:none;width:24px;height:24px;border-radius:6px;background:var(--line);display:grid;place-items:center;font:600 13px Outfit,sans-serif;color:var(--mut)}
+.opt:hover:not(:disabled){border-color:var(--teal)}
+.opt.right{border-color:var(--ok);background:var(--okbg)}
+.opt.wrong{border-color:var(--bad);background:var(--badbg)}
+.opt:disabled{cursor:default}
+.feedback{min-height:56px;margin-top:14px;font-size:17px}
+.feedback .ok{color:var(--ok);font-weight:700}.feedback .bad{color:var(--bad);font-weight:700}
+.exfoot{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.hint{font-size:13px;color:var(--mut)}
+.btn{font:600 16px Outfit,sans-serif;min-height:46px;padding:0 18px;border-radius:12px;border:2px solid var(--teal);background:var(--teal);color:#fff;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn svg{width:16px;height:16px}
+.btn kbd{font:600 12px Outfit,sans-serif;opacity:.75;border:1px solid #fff8;border-radius:5px;padding:1px 5px}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+button:focus-visible,input:focus-visible{outline:3px solid #f5a623;outline-offset:2px}
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0}
+.kpis dt{font-size:13px;color:var(--mut)}.kpis dd{margin:0;font-size:28px;font-weight:700;font-variant-numeric:tabular-nums}
+.mastery{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.mastery li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;font-size:15px}
+.mastery .bar{grid-column:1/-1;height:7px;border-radius:9px;background:var(--line);overflow:hidden}
+.mastery .bar i{display:block;height:100%;background:var(--teal);border-radius:9px}
+.mastery .pct{color:var(--mut);font-variant-numeric:tabular-nums;font-size:14px}
+.mastery li.locked{opacity:.45}
+.mastery li.now span:first-child{font-weight:700}
+.auth{display:grid;gap:10px}
+label{display:grid;gap:4px;font-size:14px;font-weight:600}
+input{font:16px Outfit,sans-serif;min-height:46px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink);padding:0 12px;width:100%}
+.row2{display:flex;gap:10px;flex-wrap:wrap}
+.who{margin:0 0 10px}
+.activity{display:grid;grid-template-columns:repeat(14,minmax(0,1fr));gap:4px;align-items:end;height:64px;margin-bottom:4px}
+.activity i{display:block;border-radius:4px 4px 2px 2px;background:var(--teal);min-height:3px}
+.note{font-size:13px;color:var(--mut);margin:8px 0 0}
+.err{color:var(--bad);font-weight:600;margin:8px 0 0;min-height:1.4em}
+.band.foot{background:var(--teal2);color:#e5f3f1;padding:18px 0;font-size:14px}
+.foot a{color:#fff}

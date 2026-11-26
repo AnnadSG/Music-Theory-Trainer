@@ -1,0 +1,25 @@
+{
+  "name": "musical-theory-trainer",
+  "version": "1.0.0",
+  "description": "Treinador de teoria musical com exercícios gerados automaticamente e dificuldade adaptativa",
+  "main": "server/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --env-file-if-exists=.env --watch server/index.js",
+    "test": "node --test test/*.test.js",
+    "migrate": "node server/db/migrate.js"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "express": "^4.22.3",
+    "pg": "^8.23.1"
+  },
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  }
+}
